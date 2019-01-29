@@ -7,7 +7,7 @@ var app = express();
 
 //var filePath = path.join(__dirname, argv.grammar);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
     app.get('/grammar/:grammar', function (req, res) {
         console.log(path.join(__dirname, req.params.grammar+'.instagrammar'));
         fs.readFile(path.join(__dirname, req.params.grammar+'.instagrammar'), 'utf8', (err, data) => {
