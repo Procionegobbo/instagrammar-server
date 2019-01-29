@@ -135,3 +135,9 @@ typings/
 # Serverless directories
 .serverless
 
+.idea/codeStyles/
+.idea/encodings.xml
+.idea/koboldo_instagrammar.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
