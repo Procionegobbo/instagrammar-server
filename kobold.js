@@ -1,0 +1,21 @@
+var fs = require('fs'),
+    path = require('path'),
+    argv = require('minimist')(process.argv.slice(2)),
+    instagrammar = require("instagrammar");
+//console.log(argv.grammar);
+
+var filePath = path.join(__dirname, argv.grammar);
+
+function generateKobold(grammar) {
+    var ig = new instagrammar.InstaGrammar(grammar);
+    return ig.generate().replace(/\\"/g, '"');
+}
+
+fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) throw err;
+    //console.log(data);
+    var http = require('http');
+
+    koboldo = generateKobold(data);
+    console.log(koboldo);
+});

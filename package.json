@@ -1,0 +1,16 @@
+{
+  "name": "koboldo-instagrammar",
+  "version": "1.0.0",
+  "description": "Generatori di koboldi (TEST)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Federico Maiorini",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "instagrammar": "^1.0.7",
+    "minimist": "^1.2.0"
+  }
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kobold JS (TEST)</title>
+    <script src="node_modules/instagrammar/dist/instagrammar.js"></script>
+    <script>
+        var grammar = "$start = Hello (World | Universe);"
+        var ig = new instagrammar.InstaGrammar(grammar);
+        var output = ig.generate();
+
+
+
+
+    </script>
+</head>
+<body>
+
+<label for="grammar">Grammatica</label>
+<textarea id="grammar">
+
+</textarea>
+<div id="contenuto">
+
+</div>
+
+</body>
+</html>

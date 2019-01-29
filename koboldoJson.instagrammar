@@ -1,0 +1,225 @@
+$start<=\{
+ "Nomekoboldo":" <$Nomekoboldo> ",
+ "CogNomekoboldo":" <$CogNomekoboldo> ",
+ "Originekoboldo":" <$Originekoboldo> ",
+ "Colorekoboldo":" <$Colorekoboldo^U> ",
+ "SegnoParticolare":" <$SegnoParticolare^U> ",
+ "ParentelaKoboldo":" <$ParentelaKoboldo>^U ",
+ "PiattoKoboldo":" <$PiattoKoboldo>^U ",
+ "StoriaKoboldo":"StoriaKoboldo"
+\};
+
+$Nomekoboldo <= ([(s|r|p|$VOC)^1-2]<(k)<$KobPARTE<($KobPARTE)^1-5)^U ;
+$KobPARTE = ass|and|$VOC<r[<r]|$VOC<ch|$VOC<rk|r[<$VOC]<[b|k|l|s|t];
+$VOC = <(a|e|i|o*3|u*3|y);
+
+$CogNomekoboldo <= $Prefisso((k*5|r|t|p|s|d|f|g|l|z|c|v|m)<$KobPARTE2<($KobPARTE2)^1-5<$VOC)^U;
+$Originekoboldo = $KobREGNO;
+$KobPARTE2 = $VOC<ss
+            |$VOC<n[<d]
+            |$VOC<r[<r]
+            |$VOC<g[<h]
+            |$VOC<l
+            |$VOC<ch
+            |$VOC<n
+            |$VOC<f
+            |$VOC<d
+            |$VOC<r[<k]
+            |$VOC<c[<c]
+            |$VOC<p
+            |i<$VOC;
+
+$KobREGNO =[$TipoTerra]^U (_
+	    (
+            ( b<[l]<ash | trog | zwol | mop | yon | wos | zlom | krol | prot | dor | tor | yor | zor | for | por )
+        )^1-3>
+    )^U;
+
+$Prefisso = (de^U|de|von^U|von|_*5);
+
+$TipoTerra =(
+	#la terra|
+	#la spiaggia|
+	#la valle|
+	#la steppa|
+	#la palude|
+	#la città[sotterranea]|
+	#la [pen<_]isola|
+	#la periferia|
+	#il complesso vulcanico|
+	#il ghiacciai[<o]|
+	#la discarica|
+	#il pozzo|
+	#l abisso|
+	#le caverne|
+	#le grotte|
+	#l orfanotrofio|
+	#lo zoo) di;
+
+
+$ColoreBase = $ColoreCromatico*5
+    |$ColoreMetallico*2
+    |$ColoreCristallo*1
+    |$ColoreFumble*3;
+
+$Colorekoboldo = $ColoreBase (e $ColoreBase|_*10);
+
+$ColoreCromatico = rosso|verde|blu|nero|giallo|arancione|marrone|bianco|azzurro|viola|porpora;
+$ColoreMetallico = oro|bronzo|argento|platino|mithril|oricalco|ferro|bario;
+$ColoreCristallo = cristallo di (rocca|diamante|quarzo|smeraldo|rubino|vetro|ghiaccio);
+
+
+$ColoreFumble = (Prosmatico|Vermiglio|Oro|Nero|Bianco|Rosso|Blu|Verde|Bianco|Rosso|Bah...|Bianco coi piedi Beige|
+Marroncino scuro|dipinto di bianco con toupè|Marrone|Coboldo generico|Zaffiro|Soggettivo|Cremisi|Magma|
+Grigio con striature Nere|Dipende da chi lo guarda|Oro|Bianco|Blu|Nero|Giallo|Blu|Blallo|Blu cobalto|
+Rosso pompeiano (ocra rossa)|Rosso|Verde|Rosa Confetto|Nero|Argento (del Canto)|Bianco e Rosso|
+Metallo|Rosa|Kamaleonte (Koboleonte)|Tigrato Grigio)<\*;
+
+
+$SegnoParticolare = nessuno|
+	(
+        crede di [non] essere|si finge|nasconde di [non] essere|nega di essere|è*2|_
+    )(
+        cieco|sordo|muto|non morto|demente|falso|comico|saggio|valoroso|peloso|superdotato|
+        basso|cretino|pelato|meteoropatico|flatulento|depresso|ipocondriaco|bipolare
+    )|
+    ha una (cresta di (squame|peli|capelli|piume)|(doppia|tripla) coda [pelosa|piumata|spinosa])|
+    (parla|crede di parlare)(
+        (con (i morti|gli animali|gli alberi|le stelle|le nuvole|i suoi (amici|nemici) immaginari))|
+        (al vento|da solo|sempre sottovoce|urlando|in rima)
+    )|
+    (suona*2|crede di saper suonare)(
+        il (banjo|piffero|flauto|contrabbasso|pianoforte|violino|triangolo|bongo|tamburo)|l'<(ukulele|arpa)|la (chitarra|viola|grancassa)
+    )|
+    (pratica|conosce|(crede|pensa|dice|finge|nasconde) di (praticare|conoscere|studiare) )
+    (lo snake-fu|la magia|il voodoo|sesso con le nane|l'uncinetto)
+;
+
+
+
+/*
+---------------------------------------------------------------------------------------------------------
+	Parentela
+---------------------------------------------------------------------------------------------------------
+*/
+$ParentelaKoboldo = $Parentela di $KoboldoFumble;
+
+
+$KoboldoFumble = (krubal | skrudo | stupido idiota | kribug | kerri | ukrabal | nonno Kenny)^U;
+
+$Parentela = $PreParentame $Parentame ;
+
+$PreParentame = ([secondo|_*3] cugino [acquisito] [di (primo|secondo|terzo|quarto) grado] da parte di (madre|padre))*5|[pro>]zio|figlio|vicino di (casa|covata|nido)|nipote;
+$Parentame = (
+            del padre|della madre|dello zio|della [pro>]zia|(dello zio|del prozio)
+            |(della cugina|del cugino) di (primo|secondo|terzo|quarto) grado
+            |(del [bis>|tris>]nonno|della [bis>|tris>]nonna)
+            |(del fratello|della sorella)|del cognato|della cognata|del genero|della nuora
+            |del figlio [illegittimo|segreto]|della figlia [illegittima|segreta]
+            ) [$Parentame];
+
+
+/*
+---------------------------------------------------------------------------------------------------------
+	Cibo preferito
+---------------------------------------------------------------------------------------------------------
+*/
+
+$PiattoKoboldo =  ($Arrosto*2 | $Brodo*2 | $Colazione) (alla $KoboldoFumble|_*5);
+
+$Gatto = (gatto*5 [siamese|soriano|rosso|persiano|nudo|abissino|d'angora|orientale]
+		|felino|gatto selvatico|caracal)
+		(e (grifone|lepre [assassina]|drago farfalla|piccione)|_*3);
+
+$Arrosto = (
+	(
+		(
+			arrosto ripieno (di micetti (da latte|_*2)|_*2) |fettina|costolette|braciole|spedini|arrosticini|
+			spezzatino|casseula|frittura|hamburger|
+			salsiccia|luganega|tartare|straccetti|polpette|
+			orecchiette (fritte|al sugo|_*3)|coscette|petto|testina
+		) di gatto
+		|Gatto (arrosto|in crosta (di sale|di pane|_*3)|fritto|brasato|in umido|lesso|in salamoia|alla cacciatora|alla scottadito|porchettato)
+	)
+	[con(
+		patate (fritte|al forno|lesse|_*4) | purè | finferli | salsa (di soia|ketchup|barbecue) | maionese | verdure [saltate] | senape | kafferano*2
+	)]
+	);
+
+$Brodo = (brodo di gatto | gatto in brodo) [con $Aroma [e $Aroma]];
+
+$Aroma = (alloro|carota|prezzemolo|timo|paprika|erba gatta|erba cipollina|pepe [rosso|nero|bianco]|cardamomo|noce moscata|chiodi di garofano|kafferano*2);
+
+$Colazione = (omelette [con $Aroma [e $Aroma]] di gatto|centrifugato di gatto [con $Aroma]|biscotti di gatto|toast di gatto) ;
+
+/*
+(*---------------------------------------------------------------------------------------------------------*)
+(*  Storia  *)
+(*---------------------------------------------------------------------------------------------------------*)
+StoriaKoboldo := (
+	(EventoCovata.MS | EventoCovata.FS) in un luogo conosciuto come Originekoboldo |
+	un luogo conosciuto come Originekoboldo vide la schiusa (MS:dell'uovo|FS:della covata) di Nomekoboldo
+	).n
+(appena nato le sue scaglie erano di un {(bellissimo|orrendo|ributtante|attraente|laido|viscido|putrido|peloso|brillante)} {ColoreBase})
+poi crescendo divennero Colorekoboldo.n
+(
+{
+((in seguito ad|dopo|durante|nel mezzo di) (alcune|varie|(una|l'ultima) delle tante|una delle molte) (vicende|carestie|epidemie|guerre)[[ormai] perse nel tempo|poco chiare|[accuratamente|misteriosamente] (dimenticate|occultate|censurate)|misteriose|dimenticate])|
+(dopo [alcuni|troppi|pochi] anni [infausti|buii|oscuri|felici|pieni di gatti])
+}
+{il suo clan venne UmiliazioneClan (da^SPECIAL2|da un (clan|esercito|gruppo|a trib&ugrave;|^a banda|^a coppia|^a ciurma) di SPECIALp)}
+).n
+(poco prima di raggiungere|raggiunta|superata) la maggiore et&agrave;
+(decise di|fu costretto a|fu convinto a|disse a
+	(tutti|^i suoi ([pochi] amici|parenti|conoscenti)|una persona a caso|^l respiro) di voler
+)
+(fuggire|scappare|+seguire (la carriera|le orme|l'odore|l'esempio) Parentame di suo PreParentame)
+(e|per) (diventare|essere) un [vero|grande|apprendista|falso] Mestiere
+[anche se [segretamente] avrebbe (preferito|voluto) ((essere|diventare|fingersi|spacciarsi per|-mangiarsi|-cucinare) un) Mestiere [qualsiasi|a caso]].n
+;
+
+EventoCovata::= (MS:l'uovo|FS:la covata) di Nomekoboldo venne (MS:(deposto|perso|abbandonato|rubato)|FS:(deposta|persa|abbandonata|rubata)) ;
+
+Mestiere ::= (cuoco|barbaro|bardo|chierico[di Divino]|druido|guerriero|ladro|mago|paladino[di Divino]|ranger|arcanero|capitano|collezionista|danzatore dei cieli|meccanico|scalatore|signore delle piogge)|
+(contadino|maniscalco|fabbro|falegname|cestaio|sarto|vasaio|panettiere|calzolaio|cameriere|locandiere|accattone|campanaro);
+
+UmiliazioneClan ::= aiutato|soccorso|schiavizzato|sterminato|umiliato|raggirato|derubato|
+raggirato|mangiato|sodomizzato|cromato|schiacciato|curato|esiliato|[s^]verniciato;
+
+
+Divino ::= mordiggian|saint ardutan|erath|arash|ardutan|krubal|un dio (inventato|a caso|qualsiasi|immaginario|del (male|bene));
+
+SPECIAL2 ::= i SPECIALp.ii | gli SPECIALp.gli ;
+SPECIALp ::=
+            ii:(
+                (mangiatori|fabbricatori|rompitori|sodomizzatori) di SPECIALp. |falsi dei[del (male|bene)][in incognito]|
+                [non-]morti|cocomeri|
+                golem|chierici[di Divino]|
+                lombrichi [giganti|demoniaci]|pelati|
+                capelloni|+(cavalieri [di Divino|neri|bianchi|rossi|verdi|di fiori|di cuori|senza cavallo])|
+                ladri|bardi|sith|colleghi|
+                (servi|fedeli|sudditi|succubi) de^SPECIAL2|ladri|
+                guerrieri|re magi|maghi[neri|rossi|bianchi|verdi|del caos|reali]|
+                draghi[rossi|verdi|neri|blu|d'oro|d'argento|bianchi]|
+                gorilla[bianchi|nella nebbia]|
+                demoni|baatezu|pit fiend|basilischi|pipistrelli|vampiri|beholder|
+                bugbear|leprotti assassini|leopardi|giaguari|
+                centauri|ciclopi|giganti[delle colline|delle tempeste|dei ghiacci|del fuoco|delle montagne]|
+                (lupi|cinghiali|corvi|pipistrelli|ratti) mannari|
+                cani|delfini|maiali[^ni]|funghi|gargoyle|goblin|
+                golem[d'osso|di ferro|di pietra|di carne|d'ambra]|
+                gremlin|[demi^]lich|marinai|minotauri|
+                tanar'ri|tarrasque|titani|trogloditi|tritoni|troll
+            )|
+            gli:(
+                autisti[ di>(camion|bighe|pullman|autobus|tandem|[moto^]taxi|riscio')]|
+                elfi [oscuri|alti|dei boschi|silvani|marini|marinati|drow|grigi]|
+                gnoll|jedi|umani|
+                +(amici|amanti|adoratori|schiavi[sessuali]|spingitori) de^SPECIAL2|
+                elementali[del fuoco|della terra|dell'acqua|dell'aria]|
+                antichi|efreeti|elementali[dell'aria|dell'acqua|del fuoco|della terra]|
+                ettin|halfling|hobbit|ippocampi|illithid|ogre|orchi|
+                scheletri|slaad|unicorni|yugoloth|yeti|zombi|
+                dei [infami] [del (male|bene)] [in incognito]
+            );
+*/
