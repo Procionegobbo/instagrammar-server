@@ -13,9 +13,6 @@ function generateKobold(grammar) {
 
 fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) throw err;
-    //console.log(data);
-    var http = require('http');
-
     koboldo = generateKobold(data);
     console.log(koboldo);
 });
