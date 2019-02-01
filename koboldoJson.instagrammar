@@ -109,7 +109,7 @@ $SegnoParticolare = nessuno|
 $ParentelaKoboldo = $Parentela di $KoboldoFumble;
 
 
-$KoboldoFumble = (krubal | skrudo | stupido idiota | kribug | kerri | ukrabal | nonno Kenny)^U;
+$KoboldoFumble = (krubal | skrudo | stupido Idiota | kribug | kerri | ukrabal | nonno Kenny)^U;
 
 $Parentela = $PreParentame $Parentame ;
 
