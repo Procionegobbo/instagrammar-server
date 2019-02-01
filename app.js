@@ -17,6 +17,8 @@ app.listen(process.env.PORT, () => {
         fs.readFile(path.join(__dirname, req.params.grammar+'.instagrammar'), 'utf8', (err, data) => {
             var parsedOutput;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader('Access-Control-Allow-Origin', '*');
+
             if (err) {
                 res.send( JSON.stringify( 'Error' ) );
             }else {
