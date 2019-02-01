@@ -5,6 +5,10 @@ var fs = require('fs'),
 var express = require('express');
 var app = express();
 
+if( typeof process.env.PORT == 'undefined'){
+    process.env.PORT = 8080
+}
+console.log('Listen on port '+process.env.PORT)
 //var filePath = path.join(__dirname, argv.grammar);
 
 app.listen(process.env.PORT, () => {
@@ -12,8 +16,9 @@ app.listen(process.env.PORT, () => {
         console.log(path.join(__dirname, req.params.grammar+'.instagrammar'));
         fs.readFile(path.join(__dirname, req.params.grammar+'.instagrammar'), 'utf8', (err, data) => {
             var parsedOutput;
+            res.setHeader('Content-Type', 'application/json');
             if (err) {
-                res.send( 'Error' );
+                res.send( JSON.stringify( 'Error' ) );
             }else {
                 parsedOutput = generateKobold(data);
             }
