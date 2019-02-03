@@ -5,7 +5,7 @@ by Federico Maiorini
 2019
 */
 
-$start = $ARMA;
+$start <=\{ "arma":" <$ARMA> " \};
 
 
 /*** Definizione arma ***/
