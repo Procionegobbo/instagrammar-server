@@ -4,7 +4,7 @@ var fs = require('fs'),
     instagrammar = require("instagrammar");
 //console.log(argv.grammar);
 
-var filePath = path.join(__dirname, argv.grammar);
+var filePath = path.join(__dirname,'grammar', argv.grammar);
 
 function generateKobold(grammar) {
     var ig = new instagrammar.InstaGrammar(grammar);
