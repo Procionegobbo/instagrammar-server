@@ -17,7 +17,7 @@ $Nomekoboldo <= (
 $KobPARTE = ass|and|$VOC<r[<r]|$VOC<ch|$VOC<rk|r[<$VOC][<(b|k|l|s|t)];
 $VOC = a|e|i|o*3|u*3|y;
 
-$CogNomekoboldo <= $Prefisso((k*5|r|t|p|s|d|f|g|l|z|c|v|m)<$KobPARTE2<($KobPARTE2)^1-5<$VOC)^U;
+$CogNomekoboldo <= ($Prefisso((k*5|r|t|p|s|d|f|g|l|z|c|v|m)<$KobPARTE2<($KobPARTE2)^1-5<$VOC)^U)*5|(_);
 $Originekoboldo <= $KobREGNO(_);
 $KobPARTE2 = $VOC<ss
             |$VOC<n[<d]
