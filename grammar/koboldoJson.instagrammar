@@ -14,11 +14,11 @@ $Nomekoboldo <= (
 	<($KobPARTE)^1-5
 )^U;
 
-$KobPARTE = ass | and | $VOC<r[<r] | $VOC<ch | $VOC<rk | r[<$VOC][<(b|k|l|s|t)];
+$KobPARTE = ass|and|$VOC<r[<r]|$VOC<ch|$VOC<rk|r[<$VOC][<(b|k|l|s|t)];
 $VOC = a|e|i|o*3|u*3|y;
 
 $CogNomekoboldo <= $Prefisso((k*5|r|t|p|s|d|f|g|l|z|c|v|m)<$KobPARTE2<($KobPARTE2)^1-5<$VOC)^U;
-$Originekoboldo = $KobREGNO(_);
+$Originekoboldo <= $KobREGNO(_);
 $KobPARTE2 = $VOC<ss
             |$VOC<n[<d]
             |$VOC<r[<r]
@@ -33,11 +33,9 @@ $KobPARTE2 = $VOC<ss
             |$VOC<p
             |i<$VOC;
 
-$KobREGNO =[$TipoTerra]^U (_
-	    (
-            ( b<[l]<ash | trog | zwol | mop | yon | wos | zlom | krol | prot | dor | tor | yor | zor | for | por )
-        )^1-3>
-    )^U;
+$KobREGNO =[$TipoTerra]^U  ($ParteRegno [<$ParteRegno] [<$ParteRegno] [<$ParteRegno] [<$VOC])^U;
+
+$ParteRegno = ( b<[l]<ash|trog|zwol|mop|yon|wos|zlom|krol|prot|dor|tor|yor|zor|for|por|car|cos );
 
 $Prefisso = ( de^U|de|von^U|von|_*5 );
 
@@ -109,7 +107,7 @@ $SegnoParticolare = nessuno|
 $ParentelaKoboldo = $Parentela di $KoboldoFumble;
 
 
-$KoboldoFumble = (krubal | skrudo | stupido Idiota | kribug | kerri | ukrabal | nonno Kenny)^U;
+$KoboldoFumble = (krubal|skrudo|stupido Idiota|kribug|kerri|ukrabal|nonno Kenny)^U;
 
 $Parentela = $PreParentame $Parentame ;
 
@@ -129,7 +127,7 @@ $Parentame = (
 ---------------------------------------------------------------------------------------------------------
 */
 
-$PiattoKoboldo =  ($Arrosto*2 | $Brodo*2 | $Colazione) (alla $KoboldoFumble|_*5);
+$PiattoKoboldo =  ($Arrosto*2|$Brodo*2|$Colazione) (alla $KoboldoFumble|_*5);
 
 $Gatto = (gatto*5 [siamese|soriano|rosso|persiano|nudo|abissino|d'angora|orientale]
 		|felino|gatto selvatico|caracal)
@@ -146,15 +144,20 @@ $Arrosto = (
 		|Gatto (arrosto|in crosta (di sale|di pane|_*3)|fritto|brasato|in umido|lesso|in salamoia|alla cacciatora|alla scottadito|porchettato)
 	)
 	[con(
-		patate (fritte|al forno|lesse|_*4) | purè | finferli | salsa (di soia|ketchup|barbecue) | maionese | verdure [saltate] | senape | kafferano*2
+		patate (fritte|al forno|lesse|_*4)|purè|finferli|salsa (di soia|ketchup|barbecue)|maionese|verdure [saltate]|senape|kafferano*2
 	)]
 	);
 
-$Brodo = (brodo di gatto | gatto in brodo) [con $Aroma [e $Aroma]];
+$Brodo = (brodo di gatto|gatto in brodo) [con $Aroma [e $Aroma]];
 
 $Aroma = (alloro|carota|prezzemolo|timo|paprika|erba gatta|erba cipollina|pepe [rosso|nero|bianco]|cardamomo|noce moscata|chiodi di garofano|kafferano*2);
 
 $Colazione = (omelette [con $Aroma [e $Aroma]] di gatto|centrifugato di gatto [con $Aroma]|biscotti di gatto|toast di gatto) ;
+/*
+---------------------------------------------------------------------------------------------------------
+	Cibo preferito
+---------------------------------------------------------------------------------------------------------
+*/
 
 $EventoCovata = ( #MS l'uovo|#FS la covata ) di $Nomekoboldo venne (#MS (deposto|perso|abbandonato|rubato)|#FS (deposta|persa|abbandonata|rubata)) ;
 
@@ -167,7 +170,7 @@ raggirato|mangiato|sodomizzato|cromato|schiacciato|curato|esiliato|[s>]verniciat
 
 $Divino = Mordiggian|Saint Ardutan|Erath|Arash|Ardutan|Krubal|un dio (inventato|a caso|qualsiasi|immaginario|del (male|bene));
 
-$SPECIAL2 = i $SPECIALp^#ii | gli $SPECIALp^#gli ;
+$SPECIAL2 = i $SPECIALp^#ii|gli $SPECIALp^#gli ;
 $SPECIALp =#ii (
 	                (
 		                falsi dei[del (male|bene)][in incognito]|
@@ -189,7 +192,7 @@ $SPECIALp =#ii (
 		                tanar'ri|tarrasque|titani|trogloditi|tritoni|troll
                     )*20
                     |
-                    ((mangiatori|fabbricatori|rompitori|sodomizzatori) di ($SPECIALp^#ii|$SPECIALp^#gli) | (servi|fedeli|sudditi|succubi) de>$SPECIAL2)
+                    ((mangiatori|fabbricatori|rompitori|sodomizzatori) di ($SPECIALp^#ii|$SPECIALp^#gli)|(servi|fedeli|sudditi|succubi) de>$SPECIAL2)
             )|
             #gli (
                 (autisti[ di>(camion|bighe|pullman|autobus|tandem|[moto>]taxi|riscio')]|
@@ -213,7 +216,7 @@ $SPECIALp =#ii (
 
 $StoriaKoboldo = (
 	(
-		$EventoCovata^#MS | $EventoCovata^#FS) in un luogo conosciuto come $Originekoboldo|
+		$EventoCovata^#MS|$EventoCovata^#FS) in un luogo conosciuto come $Originekoboldo|
 		un luogo conosciuto come $Originekoboldo vide la schiusa (#MS dell'uovo|#FS della covata) di $Nomekoboldo
 	)
 <, [appena nato] le sue scaglie erano di un (bellissimo|orrendo|ributtante|attraente|laido|viscido|putrido|peloso|brillante)
