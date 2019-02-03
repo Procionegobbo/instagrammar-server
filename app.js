@@ -13,8 +13,8 @@ console.log('Listen on port '+process.env.PORT)
 
 app.listen(process.env.PORT, () => {
     app.get('/grammar/:grammar', function (req, res) {
-        console.log(path.join(__dirname, req.params.grammar+'.instagrammar'));
-        fs.readFile(path.join(__dirname, req.params.grammar+'.instagrammar'), 'utf8', (err, data) => {
+        console.log(path.join(__dirname,'grammar', req.params.grammar+'.instagrammar'));
+        fs.readFile(path.join(__dirname,'grammar', req.params.grammar+'.instagrammar'), 'utf8', (err, data) => {
             var parsedOutput;
             res.setHeader('Content-Type', 'application/json');
             res.setHeader('Access-Control-Allow-Origin', '*');
