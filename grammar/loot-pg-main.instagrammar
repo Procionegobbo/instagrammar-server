@@ -1,0 +1,57 @@
+$start = \{
+"statistiche": \{ $statistiche \},
+ "allineamento": " <$allineamento> ",
+ "razza": \{ <$razza> \},
+ "background": <$fullBackground>
+\};
+
+
+$statistiche <=
+  ("forza":{18},"destrezza":{14},"costituzione":{12},"intelligenza":{12},"saggezza":{10},"carisma":{10}) |
+  ("forza":{18},"destrezza":{16},"costituzione":{14},"intelligenza":{10},"saggezza":{10},"carisma":{8}) |
+  ("forza":{16},"destrezza":{16},"costituzione":{14},"intelligenza":{12},"saggezza":{12},"carisma":{10}) |
+  ("forza":{17},"destrezza":{15},"costituzione":{13},"intelligenza":{14},"saggezza":{10},"carisma":{1})
+;
+
+$allineamento = (
+Legale/Buono|Legale/Neutrale|Neutrale|Neutrale/Buono|Caotico/Buono|Caotico/Neutrale\*|Legale/Malvagio\*
+);
+
+$razza =
+( "razza": "Umano", "link":"gdnd.wikidot.com/race:human" ) |
+( "razza": "Halfling", "link":"gdnd.wikidot.com/race:halfling" ) |
+( "razza": "Gnomo", "link":"gdnd.wikidot.com/race:gnome" ) |
+( "razza": "Nano", "link":"gdnd.wikidot.com/race:dwarf" ) |
+( "razza": "Tiefling", "link":"gdnd.wikidot.com/race:tiefling" ) |
+( "razza": "Tortle", "link":"gdnd.wikidot.com/race:tortle" ) |
+( "razza": "Dragonborn", "link":"gdnd.wikidot.com/race:dragonborn" ) |
+( "razza": "Mezzelfo", "link":"gdnd.wikidot.com/race:half-elf" ) |
+( "razza": "Mezzorco", "link":"gdnd.wikidot.com/race:half-orc" ) |
+( "razza": "Aesimar", "link":"gdnd.wikidot.com/race:aasimar" ) |
+( "razza": "Tabaxi", "link":"gdnd.wikidot.com/race:tabaxi-vg" ) |
+( "razza": "Genasi", "link":"gdnd.wikidot.com/race:genasi" ) |
+( "razza": "Goliath", "link":"gdnd.wikidot.com/race:goliath" ) |
+( "razza": "Elfo", "link":"gdnd.wikidot.com/race:elf" )
+;
+
+$fullBackground = $background^#iniziato | $background^#straniero | $background^#artigiano;
+
+$background = \{
+  "tipo": (#iniziato "Iniziato" | #straniero "Straniero" | #artigiano "Artigiano" ),
+  "special": $special
+  \}
+;
+
+$special =
+  \{
+    "capacità": (
+      #iniziato ("Vantaggio su prove di Storia inerenti all'Impero.") |
+      #straniero ("Hai un contatto, di cui ti fidi, di grado più alto.") |
+      #artigiano ("Puoi portare con te 1 oggetto operativo in più durante una missione.")
+      ),
+    "competenzeExtra": (#iniziato 2|#straniero 2|#artigiano 1),
+    "lingueExtra": (#iniziato 1|#straniero 2|#artigiano 1),
+    "utensili": (#iniziato 1|#straniero 0|#artigiano 3),
+    "mo": (#iniziato 10|#straniero 5|#artigiano 30),
+  \}
+;

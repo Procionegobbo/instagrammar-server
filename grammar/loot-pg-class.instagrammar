@@ -1,0 +1,36 @@
+/*
+Generatore di personaggi per LOOT!
+Sezione: classe del personaggio ed equipaggiamento
+*/
+
+$start = \{ "$fullClass": " <$fullClass> "  \};
+
+
+/* classi
+Barbaro Bardo Chierico Druido Guerriero Monaco Paladino Ranger Mago Stregone Ladro
+*/
+$fullClass =
+$classe^#Barbaro
+|$classe^#Bardo
+|$classe^#Chierico
+|$classe^#Druido
+|$classe^#Guerriero
+|$classe^#Monaco
+|$classe^#Paladino
+|$classe^#Ranger
+|$classe^#Mago
+|$classe^#Stregone
+|$classe^#Ladro
+;
+
+$classe = $classe^#Barbaro
+          |$classe^#Bardo
+          |$classe^#Chierico
+          |$classe^#Druido
+          |$classe^#Guerriero
+          |$classe^#Monaco
+          |$classe^#Paladino
+          |$classe^#Ranger
+          |$classe^#Mago
+          |$classe^#Stregone
+          |$classe^#Ladro

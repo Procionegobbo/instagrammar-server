@@ -1,0 +1,21 @@
+{
+  "statistiche": {
+    "forza": 18,
+    "destrezza": 10,
+    "costituzione": 8,
+    "intelligenza": 16,
+    "saggezza": 10,
+    "carisma": 14
+  },
+  "allineamento": "Caotico/Buono",
+  "razza": {
+    "razza": "Tortle",
+    "link": "gdnd.wikidot.com/race:tortle"
+  },
+  "background": {
+    "tipo": "Iniziato",
+    "special": {
+      "capacità": "Vantaggio su prove di Storia inerenti all'Impero."
+    }
+  }
+}
