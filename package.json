@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "instagrammar": "^1.0.7",
+    "instagrammar": "https://bitbucket.org/ezeffiro/instagrammar.git",
     "minimist": "^1.2.0"
   }
 }
