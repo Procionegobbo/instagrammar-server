@@ -11,14 +11,14 @@ $start <=\{ "arma":" <$ARMA> " \};
 /*** Definizione arma ***/
 $ARMA = (#f [$ARMA1^#f] $ARMA2^#f|#m [$ARMA1^#m] $ARMA2^#m) $ARMA3;
 $ARMA1 =
-	#f ((porca|sodomizzante)|(poderosa|grande|magnifica|divina|piccola|minuscola|autentica|incrinata|finta|micidiale)*5)
+	#f ((porca|sodomizzante)|(poderosa|grande|magnifica|divina|piccola|minuscola|autentica|incrinata|finta|micidiale|stupida|ridicola|microscopica|famosa|misteriosa)*5)
 	|
-	#m ((porco|sodomizzante)|(poderoso|grande|magnifico|divino|piccolo|minuscolo|autentico|incrinato|finto|micidiale)*5);
+	#m ((porco|sodomizzante)|(poderoso|grande|magnifico|divino|piccolo|minuscolo|autentico|incrinato|finto|micidiale|stupido|ridicolo|microscopico|famoso|misterioso)*5);
 $ARMA2 = #f ( ( narice|merda|capocciata|preghiera|XBOX|Playstation[$CIFRA]|"ADSL"|alitata[fetida])|
 	        (
-		        spada[bastarda|lunga|corta|cortissima]|daga|ascia[bipenne]|porta|caccola|marmitta|finestra|lancia|verga|sedia|marmotta|
+		        (spada[bastarda|lunga|corta|cortissima]*3|daga|ascia[bipenne])*50|porta|marmitta|finestra|lancia|verga|sedia|marmotta|
 		        moneta|[brutta]pecora[nuda]|[brutta]gallina[spennata]|scarica elettrica|palla|racchetta|bottiglia|gatta[nuda]|
-		        (mano*2|merda|caccola*2|narice|clavicola*2|alitata|cornea|rotula|gamba) [(\(>di $CLASSE>\)|(_)*3)] |
+		        (mano*2|caccola*2|narice|clavicola*2|alitata|cornea|rotula|gamba) [(\(>di $CLASSE>\)|(_)*3)] |
 		        vanga|spazzola|tastiera|cornetta|frizione|
 		        tosse|mazza[da baseball]|incudine|[brutta]ragazza[nuda]|[brutta]prostituta[nuda]|
 		        [brutta]fruttivendola[nuda]|mela|pera|lettera [di dimissioni|di raccomandazione]|
@@ -28,19 +28,19 @@ $ARMA2 = #f ( ( narice|merda|capocciata|preghiera|XBOX|Playstation[$CIFRA]|"ADSL
 		        [penna a]sfera[rossa*2|nera*3|blu*2|verde]|
 		        pinza|pinzetta|rete|
 		        bacchetta|asta|paletta
-	        )*5
+	        )*10
         )| #m (
 	        (
 	            gomito|teschio|dente|alluce|dito[pollice|indice|medio|anulare|
 	            mignolo]|occhio|fegato|scalpello|scalpo|rampino|remo|pene|stronzo[(\(>di $CLASSE>\)|(_)*3)]
             )|
-	        spadone|pugnale|arco[(corto|lungo)[composito]]|portone|naso|bastone|coltello|
+	        (spadone|pugnale|arco[(corto|lungo)[composito]]|portone|naso|bastone|coltello)*50|
 	        gatto|cane[idrofobo]|ariete[a $CIFRA corna]|gallo|fulmine|siluro|dardo|giavellotto|
 	        scolapiatti|frullatore|mouse[wireless]|telefono[cordless]|martello[pneumatico]|parrucchiere|pony|sputo|
 	        fratello[minore|maggiore|gemello[omozigote|diverso]]|frate[francescano|domenicano|gesuita|eretico]|
-	        telefonino["TAC"|"GMS"|"UMTS"|satellitare]|dado|
+	        telefonino["TAC"|"GMS"|"UMTS"|satellitare|giocattolo]|dado|
 	        bisturi|divaricatore|rasoio[elettrico|(bi|tri|quadri)<lama]|cuscino|cerchione|
-	        forcone|tridente|piccone|shuriken|semaforo|chiodo
+	        (forcone|tridente|piccone|shuriken)*25|semaforo|chiodo
         )
         ;
 $ARMA3 = [a (2|$Cifretta^#nz) mani|_*5]
@@ -70,7 +70,7 @@ $CLASSE = [finto->] guerriero|mago|pastore[ di $SPECIALp]|
             spacciatore|frate[francescano|domenicano|gesuita|eretico]|
             monaco[shintoista|buddista]|eremita;
 
-/** da koboldoJason **/
+/** da koboldoJson **/
 $SPECIAL2 = i $SPECIALp^#ii | gli $SPECIALp^#gli ;
 $SPECIALp =#ii ( (
 		                falsi dei[del (male|bene)][in incognito]|
