@@ -139,20 +139,26 @@ $Arrosto = (
 			arrosto ripieno (di micetti (da latte|_*2)|_*2) |fettina|costolette|braciole|spedini|arrosticini|
 			spezzatino|casseula|frittura|hamburger|
 			salsiccia|luganega|tartare|straccetti|polpette|
-			orecchiette (fritte|al sugo|_*3)|coscette|petto|testina
-		) di gatto
-		|Gatto (arrosto|in crosta (di sale|di pane|_*3)|fritto|brasato|in umido|lesso|in salamoia|alla cacciatora|alla scottadito|porchettato)
+			orecchiette (fritte|al sugo|_*3)|coscette|petto|testina|
+			coda|code|arrosticini|salame|prosciutto|torta salata
+		) di $Gatto
+		|Gatto (
+		  arrosto|in crosta (di sale|di pane|_*3)|
+		  fritto|brasato|in umido|lesso|in salamoia|
+		  alla cacciatora|alla scottadito|porchettato|
+		  in agrodolce|saltato|sfilettato
+    )
 	)
 	[con(
 		patate (fritte|al forno|lesse|_*4)|purè|finferli|salsa (di soia|ketchup|barbecue)|maionese|verdure [saltate]|senape|kafferano*2
 	)]
 	);
 
-$Brodo = (brodo di gatto|gatto in brodo) [con $Aroma [e $Aroma]];
+$Brodo = (brodo di $Gatto|$Gatto in brodo) [con $Aroma [e $Aroma]];
 
 $Aroma = (alloro|carota|prezzemolo|timo|paprika|erba gatta|erba cipollina|pepe [rosso|nero|bianco]|cardamomo|noce moscata|chiodi di garofano|kafferano*2);
 
-$Colazione = (omelette [con $Aroma [e $Aroma]] di gatto|centrifugato di gatto [con $Aroma]|biscotti di gatto|toast di gatto) ;
+$Colazione = (omelette di $Gatto [con $Aroma [e $Aroma]]|centrifugato di $Gatto [con $Aroma]|biscotti di $Gatto|toast di $Gatto) ;
 /*
 ---------------------------------------------------------------------------------------------------------
 	Cibo preferito
