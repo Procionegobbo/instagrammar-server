@@ -6,7 +6,8 @@ $start<=\{
  "SegnoParticolare":" <$SegnoParticolare^U> ",
  "ParentelaKoboldo":" <$ParentelaKoboldo>^U ",
  "PiattoKoboldo":" <$PiattoKoboldo>^U ",
- "StoriaKoboldo":" <$StoriaKoboldo>^U "
+ "StoriaKoboldo":" <$StoriaKoboldo>^U ",
+ "MestiereKoboldo":"<$Mestiere>^U"
 \};
 
 $Nomekoboldo <= (
