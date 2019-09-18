@@ -10,11 +10,12 @@ $start <=\{ "png":" <$PNG> " \};
 $PNG = (
   cuoco|barbaro|bardo|chierico[di $Divino]|druido|guerriero|ladro|mago|paladino[di $Divino]|
   ranger|arcanero|capitano|danzatore dei cieli|meccanico|scalatore|signore delle piogge|
-  contadino|maniscalco|fabbro|falegname|cestaio|sarto|vasaio|panettiere|calzolaio|cameriere|locandiere|accattone|campanaro
-  )|(
+  contadino|maniscalco|fabbro|falegname|cestaio|sarto|vasaio|panettiere|calzolaio|cameriere|locandiere|accattone|campanaro|
+  cavaliere [de<$SPECIAL2]
+  )|((
     cacciatore|custode|pastore|raccoglitore|collezionista|storico|osservatore|assassino|succube|schiavo|feticista|maniaco|fan|groupie|leccatore|
     sbudellatore|scultore|ritrattista|pittore|guardia[<no]|scaccolatore|allevatore|coltivatore
-  ) (di $SPECIALp|de<$SPECIAL2);
+  ) (di $SPECIALp|de<$SPECIAL2))*3;
 
 
 
@@ -31,7 +32,7 @@ $SPECIALp =#ii (
 		                [non->]morti|cocomeri|
 		                golem|chierici[di $Divino]|
 		                lombrichi [giganti|demoniaci]|pelati|
-		                capelloni|(cavalieri [di $Divino|neri|bianchi|rossi|verdi|di fiori|di cuori|senza cavallo])*2|
+		                capelloni|([spingitori di] cavalieri [di $Divino|neri|bianchi|rossi|verdi|di fiori|di cuori|senza cavallo|delle cipolle])*2|
 		                ladri|bardi|sith|colleghi|ladri|
 		                guerrieri|re magi|maghi[neri|rossi|bianchi|verdi|del caos|reali]|
 		                draghi[rossi|verdi|neri|blu|d'oro|d'argento|bianchi]|
