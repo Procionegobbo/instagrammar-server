@@ -1,3 +1,4 @@
+
 $start<=\{
  "Nomekoboldo":" <$Nomekoboldo> ",
  "CogNomekoboldo":" <$CogNomekoboldo> ",
@@ -8,7 +9,8 @@ $start<=\{
  "PiattoKoboldo":" <$PiattoKoboldo>^U ",
  "StoriaKoboldo":" <$StoriaKoboldo>^U ",
  "MestiereKoboldo":"<$Mestiere>^U"
-\};
+\}
+;
 
 $Nomekoboldo <= (
 	(s|r|p|$VOC|k*3)>$KobPARTE
@@ -40,17 +42,19 @@ $ParteRegno = ( b<[l]<ash|trog|zwol|mop|yon|wos|zlom|krol|prot|dor|tor|yor|zor|f
 
 $Prefisso = ( de^U|de|von^U|von|_*5 );
 
+$Citta = città [sotterranea|volante|morta];
 $TipoTerra =(
 	#la terra|
 	#la spiaggia|
 	#la valle|
 	#la steppa|
 	#la palude|
-	#la città[sotterranea]|
-	#la [pen<_]isola|
+	#la $Citta|
+	#l  isola|
+	#la penisola|
 	#la periferia|
 	#il complesso vulcanico|
-	#il ghiacciai[<o]|
+	#il ghiacciaio|
 	#la discarica|
 	#il pozzo|
 	#l abisso|
@@ -166,7 +170,9 @@ $Colazione = (omelette di $Gatto [con $Aroma [e $Aroma]]|centrifugato di $Gatto 
 ---------------------------------------------------------------------------------------------------------
 */
 
-$EventoCovata = ( #MS l'uovo|#FS la covata ) di $Nomekoboldo venne (#MS (deposto|perso|abbandonato|rubato)|#FS (deposta|persa|abbandonata|rubata)) ;
+$EventoCovata =
+  ( #MS l'uovo|#FS la covata ) di $Nomekoboldo venne
+  (#MS (deposto|perso|abbandonato|rubato)|#FS (deposta|persa|abbandonata|rubata)) ;
 
 $Mestiere = (cuoco|barbaro|bardo|chierico[di $Divino]|druido|guerriero|ladro|mago|paladino[di $Divino]|ranger|arcanero|capitano|collezionista|danzatore dei cieli|meccanico|scalatore|signore delle piogge)|
 (contadino|maniscalco|fabbro|falegname|cestaio|sarto|vasaio|panettiere|calzolaio|cameriere|locandiere|accattone|campanaro);
@@ -196,13 +202,13 @@ $SPECIALp =#ii (
 		                cani|delfini|maiali[<ni]|funghi|gargoyle|goblin|
 		                golem[d'osso|di ferro|di pietra|di carne|d'ambra]|
 		                gremlin|[demi>]lich|marinai|minotauri|
-		                tanar'ri|tarrasque|titani|trogloditi|tritoni|troll
+		                tanar'ri|tarrasque|titani|trogloditi|tritoni|troll|pornicorni
                     )*20
                     |
                     ((mangiatori|fabbricatori|rompitori|sodomizzatori) di ($SPECIALp^#ii|$SPECIALp^#gli)|(servi|fedeli|sudditi|succubi) de>$SPECIAL2)
             )|
             #gli (
-                (autisti[ di>(camion|bighe|pullman|autobus|tandem|[moto>]taxi|riscio')]|
+                (autisti[ di (camion|bighe|pullman|autobus|tandem|[moto>]taxi|riscio')]|
                 elfi [oscuri|alti|dei boschi|silvani|marini|marinati|drow|grigi]|
                 gnoll|jedi|umani|
                 elementali[del fuoco|della terra|dell'acqua|dell'aria]|
@@ -228,23 +234,10 @@ $StoriaKoboldo = (
 	)
 <, [appena nato] le sue scaglie erano di un (bellissimo|orrendo|ributtante|attraente|laido|viscido|putrido|peloso|brillante)
 (
-	$Colorekoboldo|[$ColoreBase poi crescendo divennero $Colorekoboldo ]
+	$Colorekoboldo|$ColoreBase poi crescendo divennero $Colorekoboldo
 )<.
-(
-	((
-		(in seguito a |dopo|durante|nel mezzo di)
-		(alcune|varie|(una|l'ultima) delle tante|una delle molte)
-		(vicende|carestie|epidemie|guerre)
-		[[ormai] perse nel tempo|poco chiare|[accuratamente|misteriosamente]
-		(dimenticate|occultate|censurate)|misteriose|dimenticate]
-	)|
-	(
-		dopo [alcuni|troppi|pochi] anni [infausti|buii|oscuri|felici|pieni di gatti]
-	))
-	[tutto il|una parte del|metà del|uno a caso del|il capo|lo sciamano]
-	suo clan venne $UmiliazioneClan (da>$SPECIAL2|da un (clan|esercito|gruppo|a tribù|<a banda|<a coppia|<a ciurma) di $SPECIALp)<.
-)^U
-
+( $StoriaClanInizioA | $StoriaClanInizioB )
+$StoriaClanMedioA
 (poco prima di raggiungere|raggiunta|superata)^U la maggiore età
 (decise di|fu costretto a|fu convinto a|disse a
 	(tutti|<i suoi ([pochi] amici|parenti|conoscenti)|una persona a caso|<l Respiro) di voler
@@ -253,4 +246,65 @@ $StoriaKoboldo = (
 (e|per) (diventare|essere) un [vero|grande|apprendista|falso] $Mestiere
 [anche se [segretamente] avrebbe (preferito|voluto) ((essere|diventare|fingersi|spacciarsi per|mangiarsi|cucinare) un) $Mestiere [qualsiasi|a caso]]<.
 ;
+
+
+$AntagonistiClanRegno <=
+del (
+  <la $TipoTerra^#la|
+  $TipoTerra^#il|
+  <l'>$TipoTerra^#l|
+  <lo $TipoTerra^#lo |
+  <le $TipoTerra^#le
+)
+($ParteRegno [<$ParteRegno] [<$ParteRegno] [<$ParteRegno] [<$VOC])^U;
+
+$AntagonistiClanBase <= $SPECIALp ;
+$AntagonistiClan <= i $AntagonistiClanBase^#ii [$AntagonistiClanRegno]|gli $AntagonistiClanBase^#gli [$AntagonistiClanRegno];
+
+$StoriaClanInizioA = (
+           	((
+           		(in seguito a |dopo|durante|nel mezzo di)
+           		(alcune|varie|(una|l'ultima) delle tante|una delle molte)
+           		(vicende|carestie|epidemie|guerre)
+           		[[ormai] perse nel tempo|poco chiare|[accuratamente|misteriosamente]
+           		(dimenticate|occultate|censurate)|misteriose|dimenticate]
+           	)|
+           	(
+           		dopo [alcuni|troppi|pochi] anni [infausti|buii|oscuri|felici|pieni di gatti]
+           	))
+           	[tutto il|una parte del|metà del|uno a caso del|il capo|lo sciamano]
+           	suo clan venne $UmiliazioneClan (da>$AntagonistiClan|da un (clan|esercito|gruppo|<a tribù|<a banda|<a coppia|<a ciurma) di $AntagonistiClanBase)<.
+           )^U;
+
+$StoriaClanInizioB =
+il^U suo (clan*5|villaggio)
+(
+  (viveva|si procurava da vivere|(si (dilettava|cimentava)|sopravviveva))
+  con (la caccia|la pesca|l'agricoltura|la coltivazione|l'allevamento|la cromatura) de>$AntagonistiClan
+  |
+  (viveva) di
+  (caccia|pesca|([piccole] truffe|furti|rapine|stenti) (ai danni|per conto|su commissione) de>$AntagonistiClan)
+  |
+  era (asservito|ridicolizzato|schifato|schiavizzato|dominato|terrorizzato|abusato [sessualmente]|schernito|temuto|spesso mangiato|preso di mira)
+  da>$AntagonistiClan
+  )<.
+;
+
+$StoriaClanMedioA =(
+una^U
+(guerra*3|scaramuccia|gara di (corsa|rutti|scuregge|nuoto|caccole))
+scoppiò tra il clan di $Nomekoboldo e $AntagonistiClan <.
+
+(le ostilità continuarono fino a quando il giovane $Nomekoboldo<,
+fu (aiutato|ostacolato|turbato|spinto [con l'inganno]|lanciato con una catapulta|drogato|corrotto con $PiattoKoboldo)
+da suo $PreParentame<, riuscì a
+(sconfiggere|uccidere|corrompere|stuprare|mangiare|sedurre|far impazzire|bruciare|bruciacchiare)
+l'ultimo de>$AntagonistiClan<.)^U
+
+(il clan di $Nomekoboldo ne uscì
+(indebolito|sterminato|sparpagliato|sazio|confuso|rafforzato|scintillante|coperto di
+  (metallo|sugo|gloria|vergogna|liquidi (appiccicosi|maleodorante)|oro|peli)
+)
+[anche se nessun $Mestiere era sopravvissuto]<.)^U
+);
 
