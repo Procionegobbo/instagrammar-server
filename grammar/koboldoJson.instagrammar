@@ -293,8 +293,7 @@ $StoriaClanMedioA =(
 una^U
 (guerra*3|scaramuccia|gara di (corsa|rutti|scuregge|nuoto|caccole))
 scoppiò tra il clan di $Nomekoboldo e $AntagonistiClan <.
-(le ostilità continuarono fino a quando il giovane $Nomekoboldo<,
-fu (aiutato|ostacolato|turbato|spinto [con l'inganno]|lanciato con una catapulta|drogato|corrotto con $PiattoKoboldo)
+(le ostilità continuarono fino a quando il giovane $Nomekoboldo<, fu (aiutato|ostacolato|turbato|spinto [con l'inganno]|lanciato con una catapulta|drogato|corrotto con $PiattoKoboldo)
 da suo $PreParentame<, riuscì a
 (sconfiggere|uccidere|corrompere|stuprare|mangiare|sedurre|far impazzire|bruciare|bruciacchiare)
 l'ultimo de>$AntagonistiClan<.)^U
