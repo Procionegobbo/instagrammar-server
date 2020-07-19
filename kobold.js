@@ -2,7 +2,7 @@ var fs = require('fs'),
     path = require('path'),
     argv = require('minimist')(process.argv.slice(2)),
     instagrammar = require("instagrammar");
-//console.log(argv.grammar);
+console.log(argv);
 
 var filePath = path.join(__dirname,'grammar', argv.grammar);
 

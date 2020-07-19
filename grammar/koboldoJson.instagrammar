@@ -1,3 +1,4 @@
+//$start<= $EventoCovata^#MS|$EventoCovata^#FS|$EventoCovata^#Altro;
 $start<=\{
  "Nomekoboldo":" <$Nomekoboldo> ",
  "CogNomekoboldo":" <$CogNomekoboldo> ",
@@ -7,7 +8,7 @@ $start<=\{
  "ParentelaKoboldo":" <$ParentelaKoboldo>^U ",
  "PiattoKoboldo":" <$PiattoKoboldo>^U ",
  "StoriaKoboldo":" <$StoriaKoboldo>^U ",
- "MestiereKoboldo":"<$Mestiere>^U"
+ "MestiereKoboldo":"<$MestiereAttuale>^U"
 \}
 ;
 
@@ -79,7 +80,7 @@ $ColoreFumble = (Prosmatico|Vermiglio|Oro|Nero|Bianco|Rosso|Blu|Verde|Bianco|Ros
 	Marroncino scuro|dipinto di bianco con toupè|Marrone|Coboldo generico|Zaffiro|Soggettivo|Cremisi|Magma|
 	Grigio con striature Nere|Dipende da chi lo guarda|Oro|Bianco|Blu|Nero|Giallo|Blu|Blallo|Blu cobalto|
 	Rosso pompeiano (ocra rossa)|Rosso|Verde|Rosa Confetto|Nero|Argento (del Canto)|Bianco e Rosso|
-	Metallo|Rosa|Kamaleonte (Koboleonte)|Tigrato Grigio) \(Fumble\!\);
+	Metallo|Rosa|Kamaleonte (Koboleonte)|Tigrato Grigio) ;
 
 
 $SegnoParticolare = nessuno|
@@ -170,14 +171,26 @@ $Colazione = (omelette di $Gatto [con $Aroma [e $Aroma]]|centrifugato di $Gatto 
 */
 
 $EventoCovata =
-  ( #MS l'uovo|#FS la covata ) di $Nomekoboldo venne
-  (#MS (deposto|perso|abbandonato|rubato)|#FS (deposta|persa|abbandonata|rubata)) ;
+#MS (l'uovo di $Nomekoboldo $EventoCovataAbbandono)|
+#FS (la covata di $Nomekoboldo (fu|venne) (deposta|persa|abbandonata|rubata|trovata) (dal suo clan|_*5)) |
+#Altro ($Nomekoboldo (
+			$EventoCovataCaduta|
+			$EventoCovataAbbandono|
+			nacque|
+			uscì dall'uovo|
+			comparve dal nulla
+		))
+;
+
+$EventoCovataCaduta = cadde (dal cielo|dal nido|da una cascata );
+$EventoCovataAbbandono = venne (deposto|perso|abbandonato|rubato|trovato) (dal suo clan|_*5);
 
 $Mestiere = (cuoco|barbaro|bardo|chierico[di $Divino]|druido|guerriero|ladro|mago|paladino[di $Divino]|ranger|arcanero|capitano|collezionista|danzatore dei cieli|meccanico|scalatore|signore delle piogge)|
 (contadino|maniscalco|fabbro|falegname|cestaio|sarto|vasaio|panettiere|calzolaio|cameriere|locandiere|accattone|campanaro);
+$MestiereAttuale<=$Mestiere;
 
 $UmiliazioneClan = aiutato|soccorso|schiavizzato|sterminato|umiliato|raggirato|derubato|
-raggirato|mangiato|sodomizzato|cromato|schiacciato|curato|esiliato|[s>]verniciato;
+raggirato|mangiato|cromato|schiacciato|curato|esiliato|[s>]verniciato;
 
 
 $Divino = Mordiggian|Saint Ardutan|Erath|Arash|Ardutan|Krubal|un dio (inventato|a caso|qualsiasi|immaginario|del (male|bene));
@@ -226,14 +239,15 @@ $SPECIALp =#ii (
 ---------------------------------------------------------------------------------------------------------
 */
 
-$StoriaKoboldo = (
-	(
-		$EventoCovata^#MS|$EventoCovata^#FS) in un luogo conosciuto come $Originekoboldo|
-		un luogo conosciuto come $Originekoboldo vide la schiusa (#MS dell'uovo|#FS della covata) di $Nomekoboldo
-	)
-<, [appena nato] le sue scaglie erano di un (bellissimo|orrendo|ributtante|attraente|laido|viscido|putrido|peloso|brillante)
+$Nascita=
+	(($EventoCovata^#MS|$EventoCovata^#FS|$EventoCovata^#Altro) in un luogo conosciuto come $Originekoboldo)*4|
+	un luogo conosciuto come $Originekoboldo vide la schiusa (#MS dell'uovo|#FS della covata) di $Nomekoboldo
+;
+
+$StoriaKoboldo = $Nascita
+<, [appena nato] le sue scaglie erano [di un (bellissimo|orrendo|ributtante|attraente|laido|viscido|putrido|peloso|brillante)]
 (
-	$Colorekoboldo|$ColoreBase poi crescendo divennero $Colorekoboldo
+	$Colorekoboldo|$ColoreBase (poi crescendo|col tempo|in pochi (mesi|giorni)) divennero $Colorekoboldo
 )<.
 ( $StoriaClanInizioA | $StoriaClanInizioB )
 $StoriaClanMedioA
@@ -242,7 +256,7 @@ $StoriaClanMedioA
 	(tutti|<i suoi ([pochi] amici|parenti|conoscenti)|una persona a caso|<l Respiro) di voler
 )
 (fuggire|scappare|(seguire (la carriera|le orme|l'odore|l'esempio) $Parentame di suo $PreParentame))*2
-(e|per) (diventare|essere) un [vero|grande|apprendista|falso] $Mestiere
+(e|per) (diventare|essere) un [vero|grande|apprendista|falso] $MestiereAttuale
 [anche se [segretamente] avrebbe (preferito|voluto) ((essere|diventare|fingersi|spacciarsi per|mangiarsi|cucinare) un) $Mestiere [qualsiasi|a caso]]<.
 ;
 
@@ -284,7 +298,7 @@ il^U suo (clan*5|villaggio)
   (viveva) di
   (caccia|pesca|([piccole] truffe|furti|rapine|stenti) (ai danni|per conto|su commissione) de>$AntagonistiClan)
   |
-  era (asservito|ridicolizzato|schifato|schiavizzato|dominato|terrorizzato|abusato [sessualmente]|schernito|temuto|spesso mangiato|preso di mira)
+  era (bullizzato|asservito|ridicolizzato|schifato|schiavizzato|dominato|terrorizzato|abusato|schernito|temuto|spesso mangiato|preso di mira)
   da>$AntagonistiClan
   )<.
 ;
@@ -295,7 +309,7 @@ una^U
 scoppiò tra il clan di $Nomekoboldo e $AntagonistiClan <.
 (le ostilità continuarono fino a quando il giovane $Nomekoboldo<, fu (aiutato|ostacolato|turbato|spinto [con l'inganno]|lanciato con una catapulta|drogato|corrotto con $PiattoKoboldo)
 da suo $PreParentame (e*5|ma) riuscì a
-(sconfiggere|uccidere|corrompere|stuprare|mangiare|sedurre|far impazzire|bruciare|bruciacchiare)
+(sconfiggere|uccidere|corrompere|mangiare|sedurre|far impazzire|bruciare|bruciacchiare)
 l'ultimo de>$AntagonistiClan<.)^U
 (il clan di $Nomekoboldo ne uscì
 (indebolito|sterminato|sparpagliato|sazio|confuso|rafforzato|scintillante|coperto di
@@ -303,3 +317,20 @@ l'ultimo de>$AntagonistiClan<.)^U
 )
 [, anche se nessun $Mestiere (sopravvisse|se ne lamentò|ci guadagnò qualcosa|ne fu (felice|informato|infornato))]<.)^U
 );
+
+
+
+$RAZZA = [mezz>]elfo [[poco|molto|leggermente|troppo|quasi|apparentemente]oscuro] | nano |
+	halfling[\(hobbit senza copyright\)] | elfo [dei boschi|alto] | gnomo | CLASSE | umano | goblin | koboldo |
+            drago[nero|rosso|verde|d'oro|blu|bianco]|vampiro| gigante[delle colline|delle tempeste|dei ghiacci]|
+            fantasma|demone|baatezu|beholder|centauro|dinosauro|tirannosauro|
+            brontosauro|diplodoco|velociraptor|[demi>]lich| ciclope|fungo|golem[d'osso|di ferro|di pietra|di carne|d'ambra]|
+            grifone|fifone| (lupo|cinghiale|corvo|orso|pipistrello|ratto)[mannaro]|
+            orco|scorpione|scheletro|serpente|tarrasque|titano|troglodita|troll|
+            hacker|impiegato|collega|barbone|poraccio|tritone|unicorno|verme[iena]|yugoloth|procione[gobbo];
+$CLASSE = [finto->] guerriero|mago|pastore[ di $SPECIALp]|
+            ninja|assassino|ladro|traditore|ranger|cacciatore|cabarettista|
+            terrorista|prete|addestratore[ di $SPECIALp]|chirurgo[plastico]|ginecologo|$SPECIAL1|
+            pilota[di(F1|rally|caccia|linea|tricicli)|spaziale]|contadino|minatore|erborista|
+            spacciatore|frate[francescano|domenicano|gesuita|eretico]|
+            monaco[shintoista|buddista]|eremita;

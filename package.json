@@ -1,6 +1,6 @@
 {
   "name": "koboldo-instagrammar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generatori di koboldi (TEST)",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "instagrammar": "https://bitbucket.org/ezeffiro/instagrammar.git",
-    "minimist": "^1.2.0"
+    "instagrammar": "git+https://bitbucket.org/ezeffiro/instagrammar.git",
+    "minimist": "^1.2.5"
   }
 }
