@@ -14,7 +14,7 @@ $ARMA1 =
 	#f ((porca|sodomizzante)|(poderosa|grande|magnifica|divina|piccola|minuscola|autentica|incrinata|finta|micidiale|stupida|ridicola|microscopica|famosa|misteriosa)*5)
 	|
 	#m ((porco|sodomizzante)|(poderoso|grande|magnifico|divino|piccolo|minuscolo|autentico|incrinato|finto|micidiale|stupido|ridicolo|microscopico|famoso|misterioso)*5);
-$ARMA2 = #f ( ( narice|merda|capocciata|preghiera|XBOX|Playstation[$CIFRA]|"ADSL"|alitata[fetida])|
+$ARMA2 = #f ( ( narice|capocciata|preghiera|XBOX|Playstation[$CIFRA]|"ADSL"|alitata[fetida])|
 	        (
 		        (spada[bastarda|lunga|corta|cortissima]*3|daga|ascia[bipenne])*50|porta|marmitta|finestra|lancia|verga|sedia|marmotta|
 		        moneta|[brutta]pecora[nuda]|[brutta]gallina[spennata]|scarica elettrica|palla|racchetta|bottiglia|gatta[nuda]|
@@ -32,7 +32,7 @@ $ARMA2 = #f ( ( narice|merda|capocciata|preghiera|XBOX|Playstation[$CIFRA]|"ADSL
         )| #m (
 	        (
 	            gomito|teschio|dente|alluce|dito[pollice|indice|medio|anulare|
-	            mignolo]|occhio|fegato|scalpello|scalpo|rampino|remo|pene|stronzo[(\(>di $CLASSE>\)|(_)*3)]
+	            mignolo]|occhio|fegato|scalpello|scalpo|rampino|remo|membro|escremento solido di forma cilindrica[(\(>di $CLASSE>\)|(_)*3)]
             )|
 	        (spadone|pugnale|arco[(corto|lungo)[composito]]|portone|naso|bastone|coltello)*50|
 	        gatto|cane[idrofobo]|ariete[a $CIFRA corna]|gallo|fulmine|siluro|dardo|giavellotto|
