@@ -49,7 +49,7 @@ $ARMA3 = [a (2|$Cifretta^#nz) mani|_*5]
         intelligente|puzzolente|avvelenante|intossicante|del terrore|
         vorpal|d'osso [di $RAZZA]|di cristallo [Swarowsky]|di gomma|
         con dentro un (dio|demone|fallo di gomma)|
-        d'ebano|di merda|laser[di Shpalman])*10
+        d'ebano|laser[di Shpalman])*10
         |
         (deficiente)
     )
