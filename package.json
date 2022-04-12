@@ -11,6 +11,6 @@
   "dependencies": {
     "express": "^4.16.4",
     "instagrammar": "git+https://bitbucket.org/ezeffiro/instagrammar.git",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.6"
   }
 }
